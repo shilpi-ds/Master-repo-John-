@@ -1,0 +1,39 @@
+{
+  "$id": "site-entity",
+  "filter": {
+    "entityIds": ["global-data"]
+  },
+  "source": "knowledgeGraph",
+  "fields": [
+    "name",
+    "slug",
+    "id",
+    "c_headerMenus",
+    "c_johnLogo",
+    "c_bannerDescription",
+    "c_bannerImage",
+    "c_bannerTitle",
+    "c_bannerUrl",
+    "c_headerTopMenus",
+    "c_footer1Title",
+    "c_footer1Description",
+    "c_footer1Cta",
+    "c_footer2",
+    "c_footer4Links",
+    "c_footer4Description",
+    "c_footer4Title",
+    "c_footer3Title",
+    "c_footer3Cta",
+    "c_footer3Barcode",
+    "c_footer3BarcodeCta",
+    "c_footer5Image",
+    "c_footer5Cta",
+    "c_freeDelivery",
+    "c_socialFooter"
+  ],
+
+  "localization": {
+    "locales": ["en_GB"],
+    "primary": false
+  }
+}
