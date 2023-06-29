@@ -158,6 +158,16 @@ const Location: Template<LocationTemplateProps> = ({
 }: LocationTemplateProps) => {
   const { meta, _site, slug } = document;
  
+  let baseUrl="";
+  if(__meta.mode==="development")
+  {
+    baseUrl="/";
+  }
+  else 
+  {
+    baseUrl=YEXT_PUBLIC_BASEURL;
+  }
+
   return (
     <div id="main">
       <AnalyticsProvider
@@ -173,7 +183,7 @@ const Location: Template<LocationTemplateProps> = ({
             locale={meta.locale}
             devLink={slug}
           >
-            <Breadcrumbs baseUrl="/" breadcrumbs={breadcrumbs} />
+            <Breadcrumbs baseUrl={baseUrl} breadcrumbs={breadcrumbs} />
             <HeaderBanner _site={_site}/>
 
   

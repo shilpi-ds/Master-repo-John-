@@ -55,9 +55,9 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
         parent.push(i.slug);
       }
     );
-    return `${parent.join("/")}/${document.slug.toString()}.html`;
+    return `${parent.join("/")}/${document.slug.toString()}`;
   } else {
-    return `${document.slug.toString()}.html`;
+    return `${document.slug.toString()}`;
   }
 };
 
