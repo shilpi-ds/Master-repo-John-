@@ -7,6 +7,7 @@ import {
   TemplateRenderProps,
   GetHeadConfig,
   HeadConfig,
+  TransformProps,
 } from "@yext/pages";
 import favicon from "../assets/images/favicon.ico";
 import { EntityMeta, StateDocument, TemplateMeta } from "../types";
@@ -14,6 +15,9 @@ import PageLayout from "../components/layout/PageLayout";
 import "../index.css";
 import { Link } from "@yext/pages/components";
 import { DirectoryChild } from "../types/DirectoryChild";
+import Breadcrumbs, { BreadcrumbItem } from "../components/common/Breadcrumbs";
+import { getBreadcrumb } from "../config/GlobalFunctions";
+import { DirectoryParent } from "../types/DirectoryParent";
 
 export const config: TemplateConfig = {
   stream: {
@@ -98,6 +102,21 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
+type TransformData = TemplateRenderProps & {
+  breadcrumbs: BreadcrumbItem[];
+};
+
+export const transformProps: TransformProps<TransformData> = async (data) => {
+  const document = data.document as StateDocument;
+  const directoryParents = document.dm_directoryParents || [];
+  const breadcrumbs = getBreadcrumb<DirectoryParent, StateDocument>(
+    directoryParents,
+    document,
+    data.__meta
+  );
+  return { ...data, breadcrumbs };
+};
+
 interface StateTemplateProps extends TemplateRenderProps {
   __meta: TemplateMeta;
   document: StateDocument;
@@ -106,9 +125,19 @@ interface StateTemplateProps extends TemplateRenderProps {
 const State: Template<StateTemplateProps> = ({
   document,
   __meta,
+  breadcrumbs,
 }: StateTemplateProps) => {
   const { meta, _site, slug, dm_directoryChildren } = document;
-
+  
+  let baseUrl="";
+  if(__meta.mode==="development")
+  {
+    baseUrl="/";
+  }
+  else 
+  {
+    baseUrl=YEXT_PUBLIC_BASEURL;
+  }
   return (
     <div id="main">
       <PageLayout
@@ -118,6 +147,7 @@ const State: Template<StateTemplateProps> = ({
         locale={meta.locale}
         devLink={slug}
       >
+        <Breadcrumbs baseUrl={baseUrl} breadcrumbs={breadcrumbs} />
         <h1>State</h1>
 
         <div className="directory-children">

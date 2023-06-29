@@ -7,6 +7,7 @@ import {
   TemplateRenderProps,
   GetHeadConfig,
   HeadConfig,
+  TransformProps,
 } from "@yext/pages";
 import favicon from "../assets/images/favicon.ico";
 import {
@@ -18,6 +19,9 @@ import {
 import PageLayout from "../components/layout/PageLayout";
 import "../index.css";
 import { Address, Link } from "@yext/pages/components";
+import Breadcrumbs, { BreadcrumbItem } from "../components/common/Breadcrumbs";
+import { getBreadcrumb } from "../config/GlobalFunctions";
+import { DirectoryParent } from "../types/DirectoryParent";
 
 export const config: TemplateConfig = {
   stream: {
@@ -109,6 +113,21 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
+type TransformData = TemplateRenderProps & {
+  breadcrumbs: BreadcrumbItem[];
+};
+
+export const transformProps: TransformProps<TransformData> = async (data) => {
+  const document = data.document as CityDocument;
+  const directoryParents = document.dm_directoryParents || [];
+  const breadcrumbs = getBreadcrumb<DirectoryParent, CityDocument>(
+    directoryParents,
+    document,
+    data.__meta
+  );
+  return { ...data, breadcrumbs };
+};
+
 interface CityTemplateProps extends TemplateRenderProps {
   __meta: TemplateMeta;
   document: CityDocument;
@@ -117,8 +136,20 @@ interface CityTemplateProps extends TemplateRenderProps {
 const City: Template<CityTemplateProps> = ({
   document,
   __meta,
+  breadcrumbs,
 }: CityTemplateProps) => {
   const { meta, _site, slug, dm_directoryChildren } = document;
+
+    
+  let baseUrl="";
+  if(__meta.mode==="development")
+  {
+    baseUrl="/";
+  }
+  else 
+  {
+    baseUrl=YEXT_PUBLIC_BASEURL;
+  }
   return (
     <div id="main">
       <PageLayout
@@ -128,6 +159,7 @@ const City: Template<CityTemplateProps> = ({
         locale={meta.locale}
         devLink={slug}
       >
+        <Breadcrumbs baseUrl={baseUrl} breadcrumbs={breadcrumbs} />
         <h1>City</h1>
         <h3>Locations</h3>
         <div className="city-locations">

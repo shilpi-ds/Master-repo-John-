@@ -35,7 +35,7 @@ const BreadcrumbItem = (props: BreadcrumbItemProps) => {
 
 const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { breadcrumbs, separator = ">", baseUrl } = props;
-
+console.log(breadcrumbs,"breadcrumbs");
   return (
     <div className="breadcrumb-wrapper">
       {breadcrumbs?.length && (

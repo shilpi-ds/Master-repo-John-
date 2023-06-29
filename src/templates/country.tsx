@@ -7,6 +7,7 @@ import {
   TemplateRenderProps,
   GetHeadConfig,
   HeadConfig,
+  TransformProps,
 } from "@yext/pages";
 import favicon from "../assets/images/favicon.ico";
 import { EntityMeta, TemplateMeta } from "../types";
@@ -15,7 +16,9 @@ import PageLayout from "../components/layout/PageLayout";
 import "../index.css";
 import { Link } from "@yext/pages/components";
 import { DirectoryChild } from "../types/DirectoryChild";
-
+import Breadcrumbs, { BreadcrumbItem } from "../components/common/Breadcrumbs";
+import { getBreadcrumb } from "../config/GlobalFunctions";
+import { DirectoryParent } from "../types/DirectoryParent";
 /**
  * Required when Knowledge Graph data is used for a template.
  */
@@ -34,9 +37,11 @@ export const config: TemplateConfig = {
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
 
-      /* DM children */
+  
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
+      "dm_directoryChildren.dm_directoryParents.name",
+      "dm_directoryChildren.dm_directoryParents.slug",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -107,16 +112,45 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
     ],
   };
 };
+
+type TransformData = TemplateRenderProps & {
+  breadcrumbs: BreadcrumbItem[];
+};
+
+export const transformProps: TransformProps<TransformData> = async (data) => {
+  const document = data.document as CountryDocument;
+  const directoryParents = document.dm_directoryParents || [];
+  const breadcrumbs = getBreadcrumb<DirectoryParent, CountryDocument>(
+    directoryParents,
+    document,
+    data.__meta
+  );
+  return { ...data, breadcrumbs };
+};
+
 interface CountryTemplateProps extends TemplateRenderProps {
   __meta: TemplateMeta;
   document: CountryDocument;
-}
+  }
 
 const country: Template<CountryTemplateProps> = ({
   document,
   __meta,
+  breadcrumbs,
+
 }: CountryTemplateProps) => {
   const { _site, meta, slug, dm_directoryChildren } = document;
+
+  let baseUrl="";
+  if(__meta.mode==="development")
+  {
+    baseUrl="/";
+  }
+  else 
+  {
+    baseUrl=YEXT_PUBLIC_BASEURL;
+  }
+
 
   return (
     <div id="main">
@@ -127,6 +161,7 @@ const country: Template<CountryTemplateProps> = ({
         locale={meta.locale}
         devLink={slug}
       >
+          <Breadcrumbs baseUrl={baseUrl} breadcrumbs={breadcrumbs} />
         <h1>Country</h1>
 
         <div className="directory-children">
