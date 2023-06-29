@@ -94,7 +94,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   // } else {
   //   return `${document.slug.toString()}.html`;
   // }
-  return `${document.slug.toString()}.html`;
+  return `${document.slug.toString()}`;
 };
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
