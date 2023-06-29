@@ -80,20 +80,21 @@ export const config: TemplateConfig = {
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  if (
-    document.dm_directoryParents &&
-    document.dm_directoryParents != "undefined"
-  ) {
-    const parent: string[] = [];
-    document.dm_directoryParents?.map(
-      (i: { meta: EntityMeta; slug: string; name: string }) => {
-        parent.push(i.slug);
-      }
-    );
-    return `${parent.join("/")}/${document.slug.toString()}.html`;
-  } else {
-    return `${document.slug.toString()}.html`;
-  }
+  // if (
+  //   document.dm_directoryParents &&
+  //   document.dm_directoryParents != "undefined"
+  // ) {
+  //   const parent: string[] = [];
+  //   document.dm_directoryParents?.map(
+  //     (i: { meta: EntityMeta; slug: string; name: string }) => {
+  //       parent.push(i.slug);
+  //     }
+  //   );
+  //   return `${parent.join("/")}/${document.slug.toString()}.html`;
+  // } else {
+  //   return `${document.slug.toString()}.html`;
+  // }
+  return `${document.slug.toString()}.html`;
 };
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
