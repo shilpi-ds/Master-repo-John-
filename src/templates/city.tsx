@@ -20,7 +20,7 @@ import PageLayout from "../components/layout/PageLayout";
 import "../index.css";
 import { Address, Link } from "@yext/pages/components";
 import Breadcrumbs, { BreadcrumbItem } from "../components/common/Breadcrumbs";
-import { getBreadcrumb } from "../config/GlobalFunctions";
+import { getBreadcrumb, getRecursiveData } from "../config/GlobalFunctions";
 import { DirectoryParent } from "../types/DirectoryParent";
 
 export const config: TemplateConfig = {
@@ -166,8 +166,8 @@ const City: Template<CityTemplateProps> = ({
           <div className="container">
             {dm_directoryChildren &&
               dm_directoryChildren.map((location: LocationDocument) => {
-                const url = location.slug;
-
+                //const url = location.slug;
+                const url = getRecursiveData(location, __meta);
                 return (
                   <div className="city-location" key={location.id}>
                     <div className="location-card">

@@ -171,7 +171,7 @@ console.log(_site,"_site_site_site_site")
               const url = getRecursiveData(region, __meta);
               return (
                 <div className="directory-children-card" key={region.slug}>
-                  <Link className="directory-children-name" href={`/${url}`}>
+                  <Link className="directory-children-name" href={`${baseUrl}${url}`}>
                     {region.name}
                   </Link>
                 </div>

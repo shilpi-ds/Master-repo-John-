@@ -16,7 +16,7 @@ import "../index.css";
 import { Link } from "@yext/pages/components";
 import { DirectoryChild } from "../types/DirectoryChild";
 import Breadcrumbs, { BreadcrumbItem } from "../components/common/Breadcrumbs";
-import { getBreadcrumb } from "../config/GlobalFunctions";
+import { getBreadcrumb, getRecursiveData } from "../config/GlobalFunctions";
 import { DirectoryParent } from "../types/DirectoryParent";
 
 export const config: TemplateConfig = {
@@ -153,8 +153,8 @@ const State: Template<StateTemplateProps> = ({
         <div className="directory-children">
           {dm_directoryChildren &&
             dm_directoryChildren.map((region: DirectoryChild) => {
-              const url = region.slug;
-
+              //const url = region.slug;
+              const url = getRecursiveData(region, __meta);
               return (
                 <div className="directory-children-card" key={region.slug}>
                   <Link className="directory-children-name" href={`/${url}`}>
