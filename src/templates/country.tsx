@@ -148,7 +148,7 @@ const country: Template<CountryTemplateProps> = ({
   }
   else 
   {
-    baseUrl=YEXT_PUBLIC_BASEURL+"/"+_site.slug;
+    baseUrl=YEXT_PUBLIC_BASEURL;
   }
 
 console.log(_site,"_site_site_site_site")

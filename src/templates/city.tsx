@@ -148,7 +148,7 @@ const City: Template<CityTemplateProps> = ({
   }
   else 
   {
-    baseUrl=YEXT_PUBLIC_BASEURL+"/"+_site.slug;
+    baseUrl=YEXT_PUBLIC_BASEURL;
   }
   return (
     <div id="main">
@@ -173,13 +173,13 @@ const City: Template<CityTemplateProps> = ({
                     <div className="location-card">
                       <div className="icon-row">
                         <div className="icon addressIcon"></div>
-                        <Link className="location-name" href={`/${url}`}>
+                        <Link className="location-name" href={`${baseUrl}${url}`}>
                           {location.name}
                         </Link>
                         <Address address={location.address} />
                       </div>
                       <div className="button-bx-detail">
-                        <Link className="button link" href={`/${url}`}>
+                        <Link className="button link" href={`${baseUrl}${url}`}>
                           View Details
                         </Link>
                       </div>

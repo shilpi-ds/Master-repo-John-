@@ -136,7 +136,7 @@ const State: Template<StateTemplateProps> = ({
   }
   else 
   {
-    baseUrl=YEXT_PUBLIC_BASEURL+"/"+_site.slug;
+    baseUrl=YEXT_PUBLIC_BASEURL;
   }
   return (
     <div id="main">
@@ -157,7 +157,7 @@ const State: Template<StateTemplateProps> = ({
               const url = getRecursiveData(region, __meta);
               return (
                 <div className="directory-children-card" key={region.slug}>
-                  <Link className="directory-children-name" href={`/${url}`}>
+                  <Link className="directory-children-name" href={`${baseUrl}${url}`}>
                     {region.name}
                   </Link>
                 </div>
