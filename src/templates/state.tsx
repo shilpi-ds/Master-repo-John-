@@ -128,7 +128,7 @@ const State: Template<StateTemplateProps> = ({
   breadcrumbs,
 }: StateTemplateProps) => {
   const { meta, _site, slug, dm_directoryChildren } = document;
-  
+
   let baseUrl="";
   if(__meta.mode==="development")
   {
@@ -136,7 +136,7 @@ const State: Template<StateTemplateProps> = ({
   }
   else 
   {
-    baseUrl=YEXT_PUBLIC_BASEURL;
+    baseUrl=YEXT_PUBLIC_BASEURL+"/"+_site.slug;
   }
   return (
     <div id="main">

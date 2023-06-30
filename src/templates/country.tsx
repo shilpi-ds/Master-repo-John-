@@ -167,8 +167,15 @@ console.log(_site,"_site_site_site_site")
         <div className="directory-children">
           {dm_directoryChildren &&
             dm_directoryChildren.map((region: DirectoryChild) => {
-              const url = region.slug;
-
+              let url = region.slug;
+              if(__meta.mode==="development")
+              {
+                url = region.slug;
+              }
+              else 
+              {
+                url = _site.slug+"/"+region.slug;
+              }
               return (
                 <div className="directory-children-card" key={region.slug}>
                   <Link className="directory-children-name" href={`/${url}`}>

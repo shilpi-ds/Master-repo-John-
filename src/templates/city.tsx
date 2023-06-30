@@ -148,7 +148,7 @@ const City: Template<CityTemplateProps> = ({
   }
   else 
   {
-    baseUrl=YEXT_PUBLIC_BASEURL;
+    baseUrl=YEXT_PUBLIC_BASEURL+"/"+_site.slug;
   }
   return (
     <div id="main">
