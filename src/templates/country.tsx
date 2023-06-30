@@ -148,10 +148,10 @@ const country: Template<CountryTemplateProps> = ({
   }
   else 
   {
-    baseUrl=YEXT_PUBLIC_BASEURL;
+    baseUrl=YEXT_PUBLIC_BASEURL+"/"+_site.slug;
   }
 
-
+console.log(_site,"_site_site_site_site")
   return (
     <div id="main">
       <PageLayout
