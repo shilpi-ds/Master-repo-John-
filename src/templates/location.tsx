@@ -159,7 +159,7 @@ const Location: Template<LocationTemplateProps> = ({
   const { meta, _site, slug } = document;
  
   let baseUrl="";
-  if(__meta.mode==="development")
+  if(__meta.mode=="development")
   {
     baseUrl="/";
   }

@@ -76,13 +76,13 @@ export const getBreadcrumb = <DataType, Document>(
 
   if (isRecursive) {
     data.forEach((element: DataType, index: number) => {
-      if (index >= skip && index !== 0) {
+      if (index >= skip && index != 0) {
         const slug = getRecursiveData<DataType>(element, meta, skip);
         breadcrumbs.push({
           slug: slug,
           name: element.name,
         });
-      } else if (index === 0) {
+      } else if (index == 0) {
         breadcrumbs.push({
           slug: basePrefix,
           name: baseName ? baseName : element.name,
@@ -229,3 +229,13 @@ export const getOgTags = (
   ];
 };
 export const otherHeadConfig ='<script async src="https://assets.sitescdn.net/ytag/ytag.min.js"></script>'
+export const chat =`<link rel="stylesheet" href="https://assets.sitescdn.net/chat/v0/chat.css" />
+<script src="https://assets.sitescdn.net/chat/v0/chat.umd.js"></script>
+<script>
+  window.ChatApp.mount({
+    apiKey: "1111d594ea6d3762a1e6c9d041ff77fe",
+    botId: "john-lewis",
+    title: "John Lewis",
+    stream: false,
+  });
+</script>`

@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Footer2, Links, SiteData, TemplateMeta } from "../../types";
+import ChatBoat from "../common/ChatBoat";
+
 
 interface FooterProps {
   _site: SiteData;
@@ -12,7 +14,7 @@ interface FooterProps {
 
 const Footer = (props: FooterProps) => {
   const { meta, _site } = props;
-  console.log(props, "props");
+
   return (
     <>
       <footer className="site-footer" aria-labelledby="footer-heading">
@@ -130,6 +132,7 @@ const Footer = (props: FooterProps) => {
               </ul>
             </div>
           </div>
+          <ChatBoat/>
         </div>
       </footer>
     </>

@@ -130,7 +130,7 @@ const State: Template<StateTemplateProps> = ({
   const { meta, _site, slug, dm_directoryChildren } = document;
 
   let baseUrl="";
-  if(__meta.mode==="development")
+  if(__meta.mode=="development")
   {
     baseUrl="/";
   }
@@ -143,7 +143,7 @@ const State: Template<StateTemplateProps> = ({
       <PageLayout
         _site={_site}
         meta={__meta}
-        template="country"
+        template="state"
         locale={meta.locale}
         devLink={slug}
       >

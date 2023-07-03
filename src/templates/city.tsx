@@ -155,7 +155,7 @@ const City: Template<CityTemplateProps> = ({
       <PageLayout
         _site={_site}
         meta={__meta}
-        template="country"
+        template="city"
         locale={meta.locale}
         devLink={slug}
       >

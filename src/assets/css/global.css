@@ -218,3 +218,26 @@ a{
 .breadcrumbs .breadcrumb-nav .breadcrumb-item .breadcrumb-link{
     @apply font-normal
 }
+
+
+
+  /* You can override styles by targeting the various yext-chat classes */
+  /* Here are just a few examples: */
+  .yext-chat-panel__container {
+    background-color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+  .yext-chat-header__container {
+    background-color: #0084ff;
+    color: #fff;
+    padding: 10px;
+  }
+  .yext-chat-message-bubble__message__bot {
+    background-color: #f5f8fa;
+    color: #1d2129;
+  }
+  .yext-chat-message-bubble__message__user {
+    background-color: #0084ff;
+    color: #fff;
+  }
