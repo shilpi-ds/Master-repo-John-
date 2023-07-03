@@ -40,6 +40,8 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
       "dm_directoryChildren.meta.entityType",
+      "dm_directoryChildren.dm_directoryParents.name",
+      "dm_directoryChildren.dm_directoryParents.slug",
     ],
     localization: {
       locales: ["en_GB"],
